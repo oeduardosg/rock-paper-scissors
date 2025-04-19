@@ -1,0 +1,33 @@
+.question {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.choice-maker {
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 0.1em;
+}
+
+#choices {
+    text-align: center;
+}
+
+#scores {
+    text-align: center;
+}
+
+#btn-rock {
+    font-weight: 700;
+}
+
+#btn-paper {
+    font-weight: 700;
+}
+
+#btn-scissors {
+    font-weight: 700;
+}
