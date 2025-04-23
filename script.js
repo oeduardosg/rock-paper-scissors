@@ -8,9 +8,19 @@ function getRandomInt(max) {
 
 function getComputerChoice() {
     let value = getRandomInt(3);
-    if(value == 0) return "Rock";
-    else if(value == 1) return "Paper";
-    else return "Scissors";
+    let choice = document.getElementById("computer-choice");
+    if(value == 0) {
+        choice.textContent = "?";
+        return "Rock";
+    }
+    else if(value == 1) {
+        choice.textContent = "?";
+        return "Paper";
+    }
+    else {
+        choice.textContent = "??";
+        return "Scissors";
+    }
 }
 
 function playRound(userChoice, computerChoice) {
@@ -49,34 +59,55 @@ function playRound(userChoice, computerChoice) {
     }
 }
 
-function showResult(userChoice, computerChoice, message, userScore, computerScore) {
+function showResult(userChoice, computerChoice, message) {
     let choices = document.getElementById("choices");
     let scores = document.getElementById("scores");
+    let winner = document.getElementById("winner");
 
     choices.textContent = `Your choice was ${userChoice} and the computer's was ${computerChoice}. ${message}`;
     scores.textContent = `YOU: ${userScore} vs COMPUTER: ${computerScore}`;
 
-    if(userScore == 5) {
-
+    if(userScore == 5 || computerScore == 5) {
+        if(userScore == 5) {
+            winner.textContent = "You won the game!";
+        }
+        else if(computerScore == 5) {
+            winner.textContent = "The computer won the game!"
+        }
+        let body = document.querySelector("body");
+        let restart = document.createElement("button");
+        restart.textContent = "Click here to restart the scores";
+        restart.addEventListener("click", () => {
+            userScore = 0;
+            computerScore = 0;
+            winner.textContent = "";
+            body.removeChild(restart);
+            scores.textContent = `YOU: ${userScore} vs COMPUTER: ${computerScore}`;
+        });
+        body.appendChild(restart);
     }
-    else if(computerScore == 5) {
 
-    }
 }
 
 function eventRock() {
+    let choice = document.getElementById("user-choice");
+    choice.textContent = "?";
     let computerChoice = getComputerChoice().toLocaleLowerCase();
     let message = playRound(ROCK, computerChoice);
     showResult(ROCK, computerChoice, message, userScore, computerScore);
 }
 
 function eventPaper() {
+    let choice = document.getElementById("user-choice");
+    choice.textContent = "?";
     let computerChoice = getComputerChoice().toLocaleLowerCase();
     let message = playRound(PAPER, computerChoice);
     showResult(PAPER, computerChoice, message, userScore, computerScore);
 }
 
 function eventScissors() {
+    let choice = document.getElementById("user-choice");
+    choice.textContent = "??";
     let computerChoice = getComputerChoice().toLocaleLowerCase();
     let message = playRound(SCISSORS, computerChoice);
     showResult(SCISSORS, computerChoice, message, userScore, computerScore);
